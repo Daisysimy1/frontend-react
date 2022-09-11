@@ -4,6 +4,10 @@ function Header({ isDarkMode, onToggleDarkMode }) {
   return (
     <header>
       <h1>To Do tasks</h1>
+      <div className="SubHeader">
+                <h3>Task</h3>
+                <h3>Category</h3>
+            </div>
       <div className="toggle-switch">
         <input
           type="checkbox"
