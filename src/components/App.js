@@ -1,47 +1,58 @@
-import React, { useState, useEffect } from "react";
-import './App.css'
-import {Route, Switch} from "react-router-dom";
-import NavBar from "./NavBar";
-import Home from "./Home";
-import ToDoListDisplay from "./ToDoListDisplay";
-import CategoryPage from "./CategoryPage";
+import React, { useEffect, useState } from "react";
+import Header from "./Header";
+import Search from "./Search";
+import MessageList from "./MessageList";
+import NewMessage from "./NewMessage";
 
+const testUser = { username: "Duane" };
 
 function App() {
-
-  const [categoryList, setCategoryList] = useState([]);
-  const [toDoList, setToDoList] = useState([]);
-
-
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [messages, setMessages] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:9292/categories`)
-    .then((r) => r.json())
-    .then((data) => setCategoryList(data))
-    .catch(error => alert(error));
-  },[]);
+    fetch("http://localhost:4000/messages")
+      .then((r) => r.json())
+      .then((messages) => setMessages(messages));
+  }, []);
 
+  function handleAddMessage(newMessage) {
+    setMessages([...messages, newMessage]);
+  }
 
-  useEffect(() => {
-        fetch("http://localhost:9292/todos")
-        .then((r) => r.json())
-        .then((data) => setToDoList(data))
-        .catch(error => alert(error));
-  },[]);
+  function handleDeleteMessage(id) {
+    const updatedMessages = messages.filter((message) => message.id !== id);
+    setMessages(updatedMessages);
+  }
 
+  function handleUpdateMessage(updatedMessageObj) {
+    const updatedMessages = messages.map((message) => {
+      if (message.id === updatedMessageObj.id) {
+        return updatedMessageObj;
+      } else {
+        return message;
+      }
+    });
+    setMessages(updatedMessages);
+  }
+
+  const displayedMessages = messages.filter((message) =>
+    message.body.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className="App">
-      <NavBar/> 
-      <Switch>
-        <Route exact path="/todos"><ToDoListDisplay categoryList={categoryList} toDoList={toDoList} setToDoList={setToDoList}/></Route>
-        <Route exact path="/categories"><CategoryPage categoryList={categoryList} setCategoryList={setCategoryList} toDoList={toDoList}/></Route>
-        <Route exact path="/"><Home/></Route>
-      </Switch>     
-      {/* <ToDoListDisplay categoryList={categoryList} toDoList={toDoList} setToDoList={setToDoList}/>
-      <CategoryPage categoryList={categoryList} setCategoryList={setCategoryList} toDoList={toDoList}/> */}
-
-    </div>
+    <main className={isDarkMode ? "dark-mode" : ""}>
+      <Header isDarkMode={isDarkMode} onToggleDarkMode={setIsDarkMode} />
+      <Search search={search} onSearchChange={setSearch} />
+      <MessageList
+        messages={displayedMessages}
+        currentUser={testUser}
+        onMessageDelete={handleDeleteMessage}
+        onUpdateMessage={handleUpdateMessage}
+      />
+      <NewMessage currentUser={testUser} onAddMessage={handleAddMessage} />
+    </main>
   );
 }
 
