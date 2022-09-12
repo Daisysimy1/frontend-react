@@ -12,7 +12,7 @@ function Ravenclaw(){
   const displayStu = students.filter((student)=>{
     return student.name
   })
-  //console.log("(Raven) Students: ", students)
+  
   return(
     <div>
       <header>

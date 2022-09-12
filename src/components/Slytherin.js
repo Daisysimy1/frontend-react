@@ -12,7 +12,7 @@ function Slytherin(){
   const displayStu = students.filter((student)=>{
     return student.name
   })
-  //console.log("(Sly) Students: ", students)
+  
   return(
     <div>
       <header>

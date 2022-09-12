@@ -9,7 +9,7 @@
   pointer-events: none;
 }
 body {
-  background-image: url("./images/h9.jpg");
+  background-image: url("./images/h6.jpg");
   background-color: green;
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,7 +19,7 @@ body {
   font-family: sans-serif;
   src: local(sans-serif);
   color: maroon;
-  font-size: 35px;
+  font-size: 40px;
   text-shadow: 0.5px 0.5px black;
   }
 
