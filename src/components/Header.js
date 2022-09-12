@@ -3,11 +3,7 @@ import React from "react";
 function Header({ isDarkMode, onToggleDarkMode }) {
   return (
     <header>
-      <h1>To Do tasks</h1>
-      <div className="SubHeader">
-                <h3>Task</h3>
-                <h3>Category</h3>
-            </div>
+      <h1>Chatterbox</h1>
       <div className="toggle-switch">
         <input
           type="checkbox"

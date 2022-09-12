@@ -4,7 +4,7 @@ import Search from "./Search";
 import MessageList from "./MessageList";
 import NewMessage from "./NewMessage";
 
-const testUser = { username: "Duane" };
+const testUser = { username: "Dan" };
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
