@@ -5,14 +5,14 @@ function NewStudent({onAddNewStudent}){
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-  }//This will allow a random number to be generated
+  }
 
   function handleAddNew(e){
     e.preventDefault();
     const nameData = {
       name: name,
       year_at_school: 1,
-      house_id: (getRandomInt(4) + 1) //This will "sort" the new student
+      house_id: (getRandomInt(4) + 1) 
     };
     fetch("http://localhost:9292/students", {
       method: "POST",
@@ -27,7 +27,7 @@ function NewStudent({onAddNewStudent}){
 
   return(
     <form className="NewStudent" onSubmit={handleAddNew}>
-      <label style={{color: "gold"}}>
+      <label style={{color: "purple"}}>
         Name:
         <input 
           type="text"

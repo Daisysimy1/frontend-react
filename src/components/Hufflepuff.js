@@ -12,8 +12,7 @@ function Hufflepuff(){
   const displayStu = students.filter((student)=>{
     return student.name
   })
-  //console.log("(huff) Students: ", students)
-
+  
   return(
     <div>
       <header>

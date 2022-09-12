@@ -8,7 +8,7 @@ const linkStyles = {
   margin: "0 6px 6px",
   background: "grey",
   textDecoration: "none",
-  color: "maroon"
+  color: "purple"
 };
 
 function NavBar(){
@@ -20,7 +20,7 @@ function NavBar(){
       style={linkStyles}
       activeStyle={{background: "#a9a9a9"}}
       >
-        Home
+        Home 
       </NavLink>
       <NavLink 
       to="/students"
